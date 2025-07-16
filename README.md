@@ -19,7 +19,7 @@ To build a simple yet functional internal web application that allows employees 
 | ASP.NET Core MVC  | `8.0`     | Web framework using the Model-View-Controller pattern |
 | C#                | Latest with .NET 8.0 | Backend logic and model handling |
 | Entity Framework Core | `8.0.0` | ORM to interact with SQL Server using LINQ |
-| SQL Server LocalDB | (System Installed) | Local development database |
+| MYSQL WORKBENCH | (System Installed) | Local development database |
 | Pomelo.EntityFrameworkCore.MySql | `7.0.0` | MySQL support tested during experimentation (not used finally) |
 | Microsoft.EntityFrameworkCore.SqlServer | `8.0.0` | SQL Server provider for EF Core |
 | Microsoft.EntityFrameworkCore.Design | `8.0.0` | Enables migrations and design-time tools |
@@ -33,7 +33,7 @@ To build a simple yet functional internal web application that allows employees 
 
 ### 🔹 1. Project Setup
 - Created new ASP.NET Core **MVC** project using `.NET 8.0`.
-- Configured **Entity Framework Core** with SQL Server LocalDB.
+- Configured **Entity Framework Core** with MYSQL WORKBENCH.
 - Connection string stored in `appsettings.json`.
 - Registered DbContext using `services.AddDbContext<ApplicationDbContext>()`.
 
@@ -127,7 +127,6 @@ To build a simple yet functional internal web application that allows employees 
 - **Conflicting Dependencies**: EF Core packages defaulted to `8.0.0`, but manually managed version alignment
 - **405 Errors**: Due to incorrect method signatures or routing issues in `Edit` form
 - **500 Internal Errors**: From runtime mismatches and object-model view issues
-- **MySQL via Pomelo**: Initially explored Pomelo, but settled with SQL Server for reliability
 - **EF Migrations**: Required several re-runs to sync model changes with database
 
 ---
@@ -137,7 +136,7 @@ To build a simple yet functional internal web application that allows employees 
 ### 🧰 Prerequisites
 - Visual Studio 2022+ or VS Code with C# extensions
 - .NET 8.0 SDK installed
-- SQL Server LocalDB installed (comes with Visual Studio)
+- MYSQL WORKBENCH installed 
 
 ---
 
@@ -145,7 +144,7 @@ To build a simple yet functional internal web application that allows employees 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Desmonddesco/ResourceBookingSystem
+git clone https://github.com/Desmonddesco/ResourceBookingSystem-main
 
 # 2. Navigate to project folder
 cd ResourceBookingSystem
@@ -158,9 +157,9 @@ dotnet run
 
 ---
 
-**### **🔗 SQL Server Setup on Another Machine
+### 🔗 MYSQL WORKBENCH Setup on Another Machine
 
-- Ensure **SQL Server LocalDB** is installed.
+- Ensure **MYSQL Workbench** is installed.
 
 - Update the connection string in `appsettings.json`:
 
@@ -184,7 +183,7 @@ public async Task<IActionResult> Create([Bind("Id,ResourceId,StartTime,EndTime,B
 ## 📂 Submission Checklist
 
 ✅ **GitHub Repository:**  
-➡️ [https://github.com/Desmonddesco/ResourceBookingSystem](https://github.com/Desmonddesco/ResourceBookingSystem)
+➡️ [https://github.com/Desmonddesco/ResourceBookingSystem-main]
 
 ✅ Application Screenshots  
 ✅ LocalDB `.mdf` file or backup `.bak`  
