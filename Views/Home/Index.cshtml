@@ -1,0 +1,71 @@
+﻿@model ResourceBookingSystem.Models.HomeIndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Quick Actions</h5>
+        <a class="btn btn-primary me-2" asp-controller="Bookings" asp-action="Create">New Booking</a>
+        <a class="btn btn-secondary me-2" asp-controller="Bookings" asp-action="Index">View All Bookings</a>
+        <a class="btn btn-info text-white" asp-controller="Resources" asp-action="Index">View Resources</a>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Upcoming Bookings</h5>
+
+        @if (Model.UpcomingBookings.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Resource</th>
+                        <th>Booked By</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model.UpcomingBookings)
+                    {
+                        var hoursUntilStart = Math.Round((booking.StartTime - DateTime.Now).TotalHours, 1);
+                        var hoursUntilEnd = Math.Round((booking.EndTime - DateTime.Now).TotalHours, 1);
+                        var startUnit = hoursUntilStart == 1 ? "hr" : "hrs";
+                        var endUnit = hoursUntilEnd == 1 ? "hr" : "hrs";
+
+                        <tr>
+                            <td>@booking.Resource?.Name</td>
+                            <td>@booking.BookedBy</td>
+                            <td>
+                                @booking.StartTime.ToString("g")
+                                <small class="text-muted d-block">
+                                    (@hoursUntilStart @startUnit from now)
+                                </small>
+                            </td>
+                            <td>
+                                @booking.EndTime.ToString("g")
+                                <small class="text-muted d-block">
+                                    (@hoursUntilEnd @endUnit from now)
+                                </small>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted">No upcoming bookings.</p>
+        }
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Total Resources</h5>
+        <p class="fs-4 fw-bold">@Model.TotalResources</p>
+    </div>
+</div>
